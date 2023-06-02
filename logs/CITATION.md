@@ -8,10 +8,9 @@ which is based on *Nipype* 1.8.6
 
 Anatomical data preprocessing
 
-: A total of 2 T1-weighted (T1w) images were found within the input
-BIDS dataset.
-All of them were corrected for intensity non-uniformity (INU)
-with `N4BiasFieldCorrection` [@n4], distributed with ANTs 2.3.3 [@ants, RRID:SCR_004757].
+: A total of 1 T1-weighted (T1w) images were found within the input
+BIDS dataset.The T1-weighted (T1w) image was corrected for intensity non-uniformity (INU)
+with `N4BiasFieldCorrection` [@n4], distributed with ANTs 2.3.3 [@ants, RRID:SCR_004757], and used as T1w-reference throughout the workflow.
 The T1w-reference was then skull-stripped with a *Nipype* implementation of
 the `antsBrainExtraction.sh` workflow (from ANTs), using OASIS30ANTs
 as target template.
@@ -19,9 +18,6 @@ Brain tissue segmentation of cerebrospinal fluid (CSF),
 white-matter (WM) and gray-matter (GM) was performed on
 the brain-extracted T1w using `fast` [FSL 6.0.5.1:57b01774, RRID:SCR_002823,
 @fsl_fast].
-An anatomical T1w-reference map was computed after registration of
-2 T1w images (after INU-correction) using
-`mri_robust_template` [FreeSurfer 7.3.2, @fs_template].
 Brain surfaces were reconstructed using `recon-all` [FreeSurfer 7.3.2,
 RRID:SCR_001847, @fs_reconall], and the brain mask estimated
 previously was refined with a custom variation of the method to reconcile
